@@ -166,8 +166,8 @@ void print_puzzle(puzzle p){
 
 int N = 5;
 
-vector<boost::unordered_map<size_t, puzzle>> closed(N);
-vector<boost::unordered_map<size_t, puzzle>> open(N);
+vector<unordered_map<size_t, puzzle>> closed(N);
+vector<unordered_map<size_t, puzzle>> open(N);
 vector<priority_queue<pair<long long, puzzle>>> pq(N);
 vector<queue<puzzle>> q(N);
 bool solved = false;
@@ -223,12 +223,7 @@ void backtrack(puzzle p, int id){
 		print_puzzle(p);
 		return;
 	}
-	puzzle parent;
-    
-    for(auto c: closed){
-        if(c.count(p.p_coord))
-            parent = c[p.p_coord];
-    }
+	puzzle parent = closed[p.p_coord % N][p.p_coord];
 
 	backtrack(parent, id);
 	print_puzzle(p);
@@ -283,6 +278,8 @@ puzzle pq_top(int id){
     return p;
 }
 
+size_t sol = 0, solid = 0;
+mutex sol_mtx;
 
 void astar_thread(int id){
     cout << "Started thread " << id << "\n";
@@ -296,10 +293,15 @@ void astar_thread(int id){
 		
 		for(int i = 0; i < adj.size(); i++){
 			if(weight(adj[i]) == 0){
-                if(solve_puzzle()){
-                    backtrack(adj[i], id);
-                }
-				return;
+                sol_mtx.lock();
+                if(solved)
+                    return;
+                solved = true;
+                closed_insert(adj[i], id);
+                sol = fhash(adj[i]);
+				solid = id;
+                sol_mtx.unlock();
+                return;
 			}
 		}
 
@@ -328,6 +330,9 @@ void astar(puzzle begin){
     
     for(thread& t: ts)
         t.join();
+
+    cout << "solution found\n";
+    backtrack(closed[solid][sol], solid);
 }
 
 
