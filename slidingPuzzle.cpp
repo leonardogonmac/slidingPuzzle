@@ -166,8 +166,8 @@ void print_puzzle(puzzle p){
 
 int N = 5;
 
-vector<unordered_map<size_t, puzzle>> closed(N);
-vector<unordered_map<size_t, puzzle>> open(N);
+vector<boost::unordered_map<size_t, puzzle>> closed(N);
+vector<boost::unordered_map<size_t, puzzle>> open(N);
 vector<priority_queue<pair<long long, puzzle>>> pq(N);
 vector<queue<puzzle>> q(N);
 bool solved = false;
