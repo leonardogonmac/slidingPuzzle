@@ -164,15 +164,15 @@ void print_puzzle(puzzle p){
 	}
 }
 
-int N = 5;
+int N = 0;
 
-vector<boost::unordered_map<size_t, puzzle>> closed(N);
-vector<boost::unordered_map<size_t, puzzle>> open(N);
-vector<priority_queue<pair<long long, puzzle>>> pq(N);
-vector<queue<puzzle>> q(N);
+vector<boost::unordered_map<size_t, puzzle>> closed;
+vector<boost::unordered_map<size_t, puzzle>> open;
+vector<priority_queue<pair<long long, puzzle>>> pq;
+vector<queue<puzzle>> q;
 bool solved = false;
 
-vector<mutex> q_mtx(N);
+vector<mutex> q_mtx;
 mutex solved_mtx;
 
 void closed_insert(puzzle p, int id){
@@ -358,11 +358,64 @@ puzzle begin_puzzle(int rank){
 	return begin;
 }
 
-// 1 2 3 4 5 6 ..
+puzzle default_puzzle(int rank){
+	puzzle begin;
+	for(int i = 0; i < rank; i++){
+		vector<piece> row;
+		for(int j = 0; j < rank; j++){
+			piece x;
+            if(i == rank - 1 && j == rank - 1)
+                x.num = 0;
+    		else	
+                x.num = i*rank + (j + 1);
+			if(x.num != 0)
+				x.goal = {(x.num - 1)/rank, (x.num - 1) % rank};
+			else{
+				x.goal = {rank - 1, rank - 1};
+				begin.empty = {i, j};
+			}
+			row.push_back(x);
+		}
+		begin.m.push_back(row);
+	}
+	begin.steps = 0;
+	begin.p_coord = 0;
+	return begin;
+}
 
-int main(){
+void print_sample(puzzle p){
+	for(int i = 0; i < p.m.size(); i++){
+		for(int j = 0; j < p.m.size(); j++){
+			cout << p.m[i][j].num << '\t';
+		}
+		cout << "\n";
+	}
+}
+
+void sampler(int rank){
+    puzzle sample = default_puzzle(rank);
+    srand(time(0));
+    for(int i = 0; i < 300; i++){
+        vector<puzzle> adj = get_adj(sample);
+        sample = adj[rand() % adj.size()];
+    }
+    cout << rank << '\n';
+    print_sample(sample);
+}
+
+int main(int argc, char* argv[]){
 	int rank;
 	cin >> rank;
+    if(argc == 1){
+        sampler(rank);
+        return 0;
+    }
+    N = atoi(argv[1]);
+    closed = vector<boost::unordered_map<size_t, puzzle>>(N);
+    open = vector<boost::unordered_map<size_t, puzzle>>(N);
+    pq = vector<priority_queue<pair<long long, puzzle>>>(N);
+    q = vector<queue<puzzle>>(N);
+    q_mtx = vector<mutex>(N);
 	puzzle begin = begin_puzzle(rank);
 	astar(begin);
 	return 0;

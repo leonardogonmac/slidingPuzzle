@@ -1,0 +1,74 @@
+make[1]: Entering directory '/home/leonardo/Documents/git/sliddingPuzzle'
+for s in samples/3/*; do \
+	echo "=============================="; \
+	echo "Running: $s"; \
+	LIMIT_BYTES=$(( 2 * 1024 * 1024 * 1024 )); \
+	if /usr/bin/time -f "Elapsed: %E\nCPU: %P\nMax memory: %M KB" \
+		prlimit --as=$LIMIT_BYTES ./bin/bin 8 < $s > /dev/null; \
+	then \
+		echo "OK: $s"; \
+	else \
+		echo "Skipped/failed due to memory limit or runtime error: $s"; \
+	fi; \
+done
+==============================
+Running: samples/3/01
+Elapsed: 0:00.04
+CPU: 715%
+Max memory: 4732 KB
+OK: samples/3/01
+==============================
+Running: samples/3/02
+Elapsed: 0:00.05
+CPU: 758%
+Max memory: 4740 KB
+OK: samples/3/02
+==============================
+Running: samples/3/03
+Elapsed: 0:00.04
+CPU: 742%
+Max memory: 4744 KB
+OK: samples/3/03
+==============================
+Running: samples/3/04
+Elapsed: 0:00.03
+CPU: 723%
+Max memory: 4284 KB
+OK: samples/3/04
+==============================
+Running: samples/3/05
+Elapsed: 0:00.04
+CPU: 750%
+Max memory: 4428 KB
+OK: samples/3/05
+==============================
+Running: samples/3/06
+Elapsed: 0:00.12
+CPU: 552%
+Max memory: 5220 KB
+OK: samples/3/06
+==============================
+Running: samples/3/07
+Elapsed: 0:00.02
+CPU: 633%
+Max memory: 6152 KB
+OK: samples/3/07
+==============================
+Running: samples/3/08
+Elapsed: 0:00.02
+CPU: 704%
+Max memory: 4244 KB
+OK: samples/3/08
+==============================
+Running: samples/3/09
+Elapsed: 0:00.00
+CPU: 542%
+Max memory: 3900 KB
+OK: samples/3/09
+==============================
+Running: samples/3/10
+Elapsed: 0:00.06
+CPU: 765%
+Max memory: 5148 KB
+OK: samples/3/10
+make[1]: Leaving directory '/home/leonardo/Documents/git/sliddingPuzzle'

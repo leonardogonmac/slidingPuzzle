@@ -1,0 +1,20 @@
+make[1]: Entering directory '/home/leonardo/Documents/git/sliddingPuzzle'
+for s in samples/4/*; do \
+	echo "=============================="; \
+	echo "Running: $s"; \
+	LIMIT_BYTES=$(( 2 * 1024 * 1024 * 1024 )); \
+	if /usr/bin/time -f "Elapsed: %E\nCPU: %P\nMax memory: %M KB" \
+		prlimit --as=$LIMIT_BYTES ./bin/bin 8 < $s > /dev/null; \
+	then \
+		echo "OK: $s"; \
+	else \
+		echo "Skipped/failed due to memory limit or runtime error: $s"; \
+	fi; \
+done
+==============================
+Running: samples/4/01
+Command terminated by signal 2
+Elapsed: 0:52.05
+CPU: 785%
+Max memory: 988380 KB
+make[1]: *** [makefile:18: test] Interrupt
