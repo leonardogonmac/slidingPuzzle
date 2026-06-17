@@ -1,10 +1,10 @@
-make[1]: Entering directory '/home/leonardo/Documents/git/sliddingPuzzle'
+make[1]: Entering directory '/home/esw/a211029405/sliddingPuzzle'
 for s in samples/3/*; do \
 	echo "=============================="; \
 	echo "Running: $s"; \
-	LIMIT_BYTES=$(( 2 * 1024 * 1024 * 1024 )); \
+	LIMIT_BYTES=$(( 200 * 1024 * 1024 * 1024 )); \
 	if /usr/bin/time -f "Elapsed: %E\nCPU: %P\nMax memory: %M KB" \
-		prlimit --as=$LIMIT_BYTES ./bin/bin 8 < $s > /dev/null; \
+		prlimit --as=$LIMIT_BYTES ./bin/bin 2 < $s > /dev/null; \
 	then \
 		echo "OK: $s"; \
 	else \
@@ -14,61 +14,61 @@ done
 ==============================
 Running: samples/3/01
 Elapsed: 0:00.04
-CPU: 715%
-Max memory: 4732 KB
+CPU: 181%
+Max memory: 3840 KB
 OK: samples/3/01
 ==============================
 Running: samples/3/02
-Elapsed: 0:00.05
-CPU: 758%
-Max memory: 4740 KB
+Elapsed: 0:00.06
+CPU: 191%
+Max memory: 3840 KB
 OK: samples/3/02
 ==============================
 Running: samples/3/03
 Elapsed: 0:00.04
-CPU: 742%
-Max memory: 4744 KB
+CPU: 180%
+Max memory: 3456 KB
 OK: samples/3/03
 ==============================
 Running: samples/3/04
-Elapsed: 0:00.03
-CPU: 723%
-Max memory: 4284 KB
+Elapsed: 0:00.02
+CPU: 188%
+Max memory: 3840 KB
 OK: samples/3/04
 ==============================
 Running: samples/3/05
 Elapsed: 0:00.04
-CPU: 750%
-Max memory: 4428 KB
+CPU: 182%
+Max memory: 3456 KB
 OK: samples/3/05
 ==============================
 Running: samples/3/06
-Elapsed: 0:00.12
-CPU: 552%
-Max memory: 5220 KB
+Elapsed: 0:00.05
+CPU: 190%
+Max memory: 4224 KB
 OK: samples/3/06
 ==============================
 Running: samples/3/07
-Elapsed: 0:00.02
-CPU: 633%
-Max memory: 6152 KB
+Elapsed: 0:00.00
+CPU: 150%
+Max memory: 3456 KB
 OK: samples/3/07
 ==============================
 Running: samples/3/08
 Elapsed: 0:00.02
-CPU: 704%
-Max memory: 4244 KB
+CPU: 176%
+Max memory: 3840 KB
 OK: samples/3/08
 ==============================
 Running: samples/3/09
 Elapsed: 0:00.00
-CPU: 542%
-Max memory: 3900 KB
+CPU: 150%
+Max memory: 3456 KB
 OK: samples/3/09
 ==============================
 Running: samples/3/10
-Elapsed: 0:00.06
-CPU: 765%
-Max memory: 5148 KB
+Elapsed: 0:00.05
+CPU: 188%
+Max memory: 4608 KB
 OK: samples/3/10
-make[1]: Leaving directory '/home/leonardo/Documents/git/sliddingPuzzle'
+make[1]: Leaving directory '/home/esw/a211029405/sliddingPuzzle'

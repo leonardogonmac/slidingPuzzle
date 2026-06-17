@@ -1,0 +1,96 @@
+make[1]: Entering directory '/home/esw/a211029405/sliddingPuzzle'
+for s in samples/5/*; do \
+	echo "=============================="; \
+	echo "Running: $s"; \
+	LIMIT_BYTES=$(( 200 * 1024 * 1024 * 1024 )); \
+	if /usr/bin/time -f "Elapsed: %E\nCPU: %P\nMax memory: %M KB" \
+		prlimit --as=$LIMIT_BYTES ./bin/bin 24 < $s > /dev/null; \
+	then \
+		echo "OK: $s"; \
+	else \
+		echo "Skipped/failed due to memory limit or runtime error: $s"; \
+	fi; \
+done
+==============================
+Running: samples/5/01
+Command terminated by signal 9
+Elapsed: 3:04.06
+CPU: 2245%
+Max memory: 49523784 KB
+Skipped/failed due to memory limit or runtime error: samples/5/01
+==============================
+Running: samples/5/02
+Elapsed: 4:22.04
+CPU: 1045%
+Max memory: 31669288 KB
+OK: samples/5/02
+==============================
+Running: samples/5/03
+terminate called recursively
+terminate called after throwing an instance of 'std::bad_allocCommand terminated by signal 6
+Elapsed: 13:22.57
+CPU: 2198%
+Max memory: 203942112 KB
+Skipped/failed due to memory limit or runtime error: samples/5/03
+==============================
+Running: samples/5/04
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Command terminated by signal 6
+Elapsed: 13:24.28
+CPU: 2206%
+Max memory: 203649380 KB
+Skipped/failed due to memory limit or runtime error: samples/5/04
+==============================
+Running: samples/5/05
+Elapsed: 6:23.39
+CPU: 1038%
+Max memory: 44695684 KB
+OK: samples/5/05
+==============================
+Running: samples/5/06
+terminate called after throwing an instance of 'std::bad_alloc'
+terminate called after throwing an instance of '  what():  std::bad_alloc
+std::bad_alloc'
+  what():  std::bad_alloc
+Command terminated by signal 6
+Elapsed: 13:44.35
+CPU: 2209%
+Max memory: 203721172 KB
+Skipped/failed due to memory limit or runtime error: samples/5/06
+==============================
+Running: samples/5/07
+terminate called recursively
+terminate called after throwing an instance of 'std::bad_alloc'
+Command terminated by signal 6
+Elapsed: 13:27.28
+CPU: 2208%
+Max memory: 203945876 KB
+Skipped/failed due to memory limit or runtime error: samples/5/07
+==============================
+Running: samples/5/08
+terminate called recursively
+terminate called after throwing an instance of 'std::bad_alloc'
+Command terminated by signal 6
+Elapsed: 13:43.20
+CPU: 2188%
+Max memory: 203852808 KB
+Skipped/failed due to memory limit or runtime error: samples/5/08
+==============================
+Running: samples/5/09
+Elapsed: 10:06.73
+CPU: 1032%
+Max memory: 68747236 KB
+OK: samples/5/09
+==============================
+Running: samples/5/10
+terminate called after throwing an instance of 'std::bad_allocterminate called after throwing an instance of 'std::bad_alloc'
+'
+  what():  std::bad_alloc
+  what():  std::bad_alloc
+Command terminated by signal 6
+Elapsed: 13:43.84
+CPU: 2200%
+Max memory: 203742500 KB
+Skipped/failed due to memory limit or runtime error: samples/5/10
+make[1]: Leaving directory '/home/esw/a211029405/sliddingPuzzle'

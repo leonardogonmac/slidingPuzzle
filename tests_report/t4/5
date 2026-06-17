@@ -1,0 +1,84 @@
+make[1]: Entering directory '/home/esw/a211029405/sliddingPuzzle'
+for s in samples/5/*; do \
+	echo "=============================="; \
+	echo "Running: $s"; \
+	LIMIT_BYTES=$(( 200 * 1024 * 1024 * 1024 )); \
+	if /usr/bin/time -f "Elapsed: %E\nCPU: %P\nMax memory: %M KB" \
+		prlimit --as=$LIMIT_BYTES ./bin/bin 4 < $s > /dev/null; \
+	then \
+		echo "OK: $s"; \
+	else \
+		echo "Skipped/failed due to memory limit or runtime error: $s"; \
+	fi; \
+done
+==============================
+Running: samples/5/01
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Command terminated by signal 6
+Elapsed: 1:39:54
+CPU: 387%
+Max memory: 208735544 KB
+Skipped/failed due to memory limit or runtime error: samples/5/01
+==============================
+Running: samples/5/02
+Elapsed: 15:58.37
+CPU: 344%
+Max memory: 30455848 KB
+OK: samples/5/02
+==============================
+Running: samples/5/03
+Command terminated by signal 9
+Elapsed: 0:29.84
+CPU: 393%
+Max memory: 1584588 KB
+Skipped/failed due to memory limit or runtime error: samples/5/03
+==============================
+Running: samples/5/04
+Command terminated by signal 9
+Elapsed: 0:14.54
+CPU: 393%
+Max memory: 754452 KB
+Skipped/failed due to memory limit or runtime error: samples/5/04
+==============================
+Running: samples/5/05
+Elapsed: 19:12.08
+CPU: 325%
+Max memory: 44026444 KB
+OK: samples/5/05
+==============================
+Running: samples/5/06
+Command terminated by signal 9
+Elapsed: 16:13.15
+CPU: 389%
+Max memory: 37612488 KB
+Skipped/failed due to memory limit or runtime error: samples/5/06
+==============================
+Running: samples/5/07
+Command terminated by signal 9
+Elapsed: 0:23.05
+CPU: 392%
+Max memory: 1114348 KB
+Skipped/failed due to memory limit or runtime error: samples/5/07
+==============================
+Running: samples/5/08
+Command terminated by signal 9
+Elapsed: 0:16.41
+CPU: 392%
+Max memory: 868036 KB
+Skipped/failed due to memory limit or runtime error: samples/5/08
+==============================
+Running: samples/5/09
+Elapsed: 30:29.99
+CPU: 324%
+Max memory: 69014236 KB
+OK: samples/5/09
+==============================
+Running: samples/5/10
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Command terminated by signal 6
+Elapsed: 1:19:33
+CPU: 387%
+Max memory: 208777816 KB
+Skipped/failed due to memory limit or runtime error: samples/5/10

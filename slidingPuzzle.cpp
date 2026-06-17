@@ -395,7 +395,7 @@ void print_sample(puzzle p){
 void sampler(int rank){
     puzzle sample = default_puzzle(rank);
     srand(time(0));
-    for(int i = 0; i < 300; i++){
+    for(int i = 0; i < 1000000; i++){
         vector<puzzle> adj = get_adj(sample);
         sample = adj[rand() % adj.size()];
     }

@@ -1,0 +1,74 @@
+make[1]: Entering directory '/home/esw/a211029405/sliddingPuzzle'
+for s in samples/3/*; do \
+	echo "=============================="; \
+	echo "Running: $s"; \
+	LIMIT_BYTES=$(( 200 * 1024 * 1024 * 1024 )); \
+	if /usr/bin/time -f "Elapsed: %E\nCPU: %P\nMax memory: %M KB" \
+		prlimit --as=$LIMIT_BYTES ./bin/bin 16 < $s > /dev/null; \
+	then \
+		echo "OK: $s"; \
+	else \
+		echo "Skipped/failed due to memory limit or runtime error: $s"; \
+	fi; \
+done
+==============================
+Running: samples/3/01
+Elapsed: 0:00.02
+CPU: 970%
+Max memory: 3072 KB
+OK: samples/3/01
+==============================
+Running: samples/3/02
+Elapsed: 0:00.01
+CPU: 975%
+Max memory: 3456 KB
+OK: samples/3/02
+==============================
+Running: samples/3/03
+Elapsed: 0:00.01
+CPU: 1011%
+Max memory: 3456 KB
+OK: samples/3/03
+==============================
+Running: samples/3/04
+Elapsed: 0:00.01
+CPU: 1021%
+Max memory: 3456 KB
+OK: samples/3/04
+==============================
+Running: samples/3/05
+Elapsed: 0:00.02
+CPU: 1050%
+Max memory: 3840 KB
+OK: samples/3/05
+==============================
+Running: samples/3/06
+Elapsed: 0:00.01
+CPU: 1066%
+Max memory: 3456 KB
+OK: samples/3/06
+==============================
+Running: samples/3/07
+Elapsed: 0:00.00
+CPU: 666%
+Max memory: 3456 KB
+OK: samples/3/07
+==============================
+Running: samples/3/08
+Elapsed: 0:00.00
+CPU: 900%
+Max memory: 3456 KB
+OK: samples/3/08
+==============================
+Running: samples/3/09
+Elapsed: 0:00.00
+CPU: 814%
+Max memory: 3840 KB
+OK: samples/3/09
+==============================
+Running: samples/3/10
+Elapsed: 0:00.01
+CPU: 1029%
+Max memory: 3456 KB
+OK: samples/3/10
+make[1]: Leaving directory '/home/esw/a211029405/sliddingPuzzle'
